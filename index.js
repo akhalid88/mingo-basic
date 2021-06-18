@@ -1,19 +1,20 @@
-var generateBoard = function (range, x, y) {
-	var r = Math.floor(Math.random() * range) + 1;
-	var matrix = [];
+const generateBoard = function (range, x, y) {
+	// var r = Math.floor(Math.random() * range) + 1;
+	const board = {};
+	const usedNums = {};
 
-	for (var i = 0; i < y; i++) {
-		for (var j = 0; j < x; j++) {
-			matrix[j, i] = Math.floor(Math.random() * range) + 1;
-		}
-		// matrix[i] = Array(x).fill(null);
-	}
-
-	for (var i = 0; i < y; i++) {
-		for (var j = 0; j < x; j++) {
-			console.log(matrix[j, i]);
+	let i = 0;
+	while (i < x * y) {
+		let r = Math.floor(Math.random() * range) + 1;
+		if (!usedNums[r]) {
+			usedNums[r] = true;
+			board[i] = r;
+			i++
 		}
 	}
+
+	console.table(board);
 }
 
-generateBoard(1000000, 5, 5);
+// generateBoard(1000000, 1, 2);
+generateBoard(100, 10, 10);
